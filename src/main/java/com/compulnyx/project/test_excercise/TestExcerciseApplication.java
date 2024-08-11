@@ -26,13 +26,13 @@ public class TestExcerciseApplication{
 		System.setProperty("EXPIRATION",dotenv.get("EXPIRATION"));
 		SpringApplication.run(TestExcerciseApplication.class, args);
 	}
-	@Bean
-	public CommandLineRunner run(RoleRepository roleRepository){
-		return args ->{
-			var role = Role.builder()
-					.name("ADMIN")
-					.build();
-			roleRepository.save(role);
-		};
-	}
+//	@Bean
+//	public CommandLineRunner run(RoleRepository roleRepository){
+//		return args ->{
+//			var role = Role.builder()
+//					.name("USER")
+//					.build();
+//			roleRepository.save(role);
+//		};
+//	}
 }

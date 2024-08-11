@@ -1,4 +1,5 @@
-package com.compulnyx.project.test_excercise.common.Configs;/*
+package com.compulnyx.project.test_excercise.common.Configs;
+/*
 *
 @author ameda
 @project Books

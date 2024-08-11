@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("auth")
 @Tag(name="Authentication")
 public class AuthController {
-    private final AuthenticationService authenticationService;
+   private final AuthenticationService authenticationService;
 
     @PostMapping("/sign-up")
     @ResponseStatus(HttpStatus.ACCEPTED)

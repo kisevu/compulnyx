@@ -35,9 +35,9 @@ springdoc:
 
 
 server:
-  port: ${SERVER_PORT}
-#  servlet:
-#    context-path: /api/v1
+  port: 9000
+  servlet:
+    context-path: /api/v1
 
 
 ---

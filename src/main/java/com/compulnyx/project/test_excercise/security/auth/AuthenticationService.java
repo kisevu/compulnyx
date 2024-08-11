@@ -19,9 +19,11 @@ import com.compulnyx.project.test_excercise.security.auth.DTO.AuthResponse;
 import com.compulnyx.project.test_excercise.security.auth.DTO.RoleRequest;
 import com.compulnyx.project.test_excercise.security.auth.DTO.SignUpRequest;
 import jakarta.mail.MessagingException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -36,6 +38,7 @@ import java.util.List;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional
 public class AuthenticationService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
@@ -48,9 +51,10 @@ public class AuthenticationService {
     @Value("${application.mailing.frontend.activation-url}")
     private String activationUrl;
 
+    @Modifying
     public void signUp(SignUpRequest request) throws MessagingException {
         var userRole = roleRepository.findByName("USER")
-                .orElseThrow(()->new IllegalStateException("role customer not initialized."));
+                .orElseThrow(()->new IllegalStateException("role USER not initialized."));
         var customer = Customer.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -99,6 +103,7 @@ public class AuthenticationService {
         return  codeBuilder.toString();
     }
 
+    @Modifying
     public void createRole(RoleRequest request) {
         Role role = Role.builder()
                 .name(request.getRoleName())
