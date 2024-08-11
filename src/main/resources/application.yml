@@ -1,0 +1,74 @@
+spring:
+  application:
+    name: test-excercise
+  profiles:
+    active: dev
+  #  datasource:
+#    url: jdbc:h2:mem:testdb
+#    username: compulnyx
+#    password: kisevu
+#    driver-class-name: org.h2.Driver
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
+#      settings:
+#        web-allow-others: true
+
+  mail:
+    host: localhost
+    port: 1025
+    username: ameda
+    password: ameda
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enable: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+springdoc:
+  default-produces-media-type: application/json
+
+
+server:
+  port: ${SERVER_PORT}
+#  servlet:
+#    context-path: /api/v1
+
+
+---
+spring:
+  application:
+    name: AUTH-SERVICE
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/compulnyx
+    username: root
+    password: rootUser@123
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.MySQL5Dialect
+
+
+
+application:
+  security:
+    jwt:
+      secret-key: ${SECRET-KEY}
+      expiration: ${EXPIRATION}
+  mailing:
+    frontend:
+      activation-url: http://localhost:4200/activate-account
+
+
+
+

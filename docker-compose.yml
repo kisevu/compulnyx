@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  mail-dev:
+    container_name: mail-dev-compulnyx
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+    networks:
+      - compulnyx-network
+
+networks:
+  compulnyx-network:
+    driver: bridge
