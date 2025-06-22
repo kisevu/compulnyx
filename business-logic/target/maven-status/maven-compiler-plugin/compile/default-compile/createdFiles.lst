@@ -1,9 +1,13 @@
+com/ameda/compulnyx/config/SwaggerConfig.class
 com/ameda/compulnyx/config/CompulnyxConfig.class
 com/ameda/compulnyx/config/JwtAuthFilter.class
 com/ameda/compulnyx/services/JwtService.class
 com/ameda/compulnyx/repository/UserRepository.class
+com/ameda/compulnyx/utility/validator/DOBValidator.class
+com/ameda/compulnyx/utility/annotation/DOBRange.class
 com/ameda/compulnyx/dtos/LoginUserDTO.class
 com/ameda/compulnyx/services/AuthenticationService.class
+com/ameda/compulnyx/entities/Student.class
 com/ameda/compulnyx/services/impl/AuthenticationImpl.class
 com/ameda/compulnyx/dtos/RegisterUserDTO.class
 com/ameda/compulnyx/dtos/responses/LoginResponse.class

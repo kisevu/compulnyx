@@ -6,6 +6,7 @@ import com.ameda.compulnyx.dtos.responses.LoginResponse;
 import com.ameda.compulnyx.entities.User;
 import com.ameda.compulnyx.services.AuthenticationService;
 import com.ameda.compulnyx.services.JwtService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,7 +31,7 @@ public class AuthResource {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<User> register(@RequestBody RegisterUserDTO registerUserDto) {
+    public ResponseEntity<User> register(@RequestBody @Valid RegisterUserDTO registerUserDto) {
         User registeredUser = authenticationService.signUp(registerUserDto);
         return ResponseEntity.ok(registeredUser);
     }

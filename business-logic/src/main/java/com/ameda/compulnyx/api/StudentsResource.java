@@ -1,6 +1,7 @@
 package com.ameda.compulnyx.api;
 
 import com.ameda.compulnyx.services.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/students")
+@SecurityRequirement(name = "bearerAuth")
 public class StudentsResource {
 
     private static Logger log = LoggerFactory.getLogger(StudentsResource.class);
@@ -30,6 +32,8 @@ public class StudentsResource {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(userService.allUsers());
     }
+    
+    
 
 
 }

@@ -11,8 +11,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -22,10 +20,10 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long studentId;
 
     @Column(unique = true,nullable = false)
-    private String username;
+    private String username; // username should be the email by default
     @Column(unique = true,nullable = false)
     private String email;
     @Column(nullable = false)
@@ -34,27 +32,33 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private boolean enabled;
 
-    @Column(name = "verification_code")
-    private String verificationCode;
+    @Embedded
+    private Student student;
 
-    @Column(name = "verification_expiration")
-    private LocalDateTime verificationExpiration;
-
-    public User(String username, String password, String email) {
+    public User(String username, String password, String email, Student student) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.student = student;
     }
 
     public User() {
     }
 
-    public Long getUserId() {
-        return userId;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Long getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 
     @Override
@@ -87,22 +91,6 @@ public class User implements UserDetails {
         this.enabled = enabled;
     }
 
-    public String getVerificationCode() {
-        return verificationCode;
-    }
-
-    public void setVerificationCode(String verificationCode) {
-        this.verificationCode = verificationCode;
-    }
-
-    public LocalDateTime getVerificationExpiration() {
-        return verificationExpiration;
-    }
-
-    public void setVerificationExpiration(LocalDateTime verificationExpiration) {
-        this.verificationExpiration = verificationExpiration;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
         return List.of();
@@ -128,13 +116,14 @@ public class User implements UserDetails {
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
+                "studentId=" + studentId +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
-                ", verificationCode='" + verificationCode + '\'' +
-                ", verificationExpiration=" + verificationExpiration +
+                ", student=" + student +
                 '}';
     }
+
+
 }

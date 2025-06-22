@@ -37,9 +37,7 @@ public class AuthenticationImpl implements AuthenticationService {
     public User signUp(RegisterUserDTO registerUserDTO) {
         User user = new User(registerUserDTO.getUsername(),
                 passwordEncoder.encode(registerUserDTO.getPassword()),
-                registerUserDTO.getEmail());
-        user.setVerificationCode(generateVerificationCode());
-        user.setVerificationExpiration(LocalDateTime.now().plusMinutes(15));
+                registerUserDTO.getEmail(),registerUserDTO.getStudent());
         user.setEnabled(false);
         return userRepository.save(user);
     }
@@ -52,7 +50,7 @@ public class AuthenticationImpl implements AuthenticationService {
             user.setEnabled(true);
             userRepository.save(user);
             if (!user.isEnabled()) {
-                throw new RuntimeException("Account not verified. Please verify your account.");
+                throw new RuntimeException("Account not enabled. Please contact Admin for Assistance.");
             }
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
