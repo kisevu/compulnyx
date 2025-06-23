@@ -8,6 +8,7 @@ com/ameda/compulnyx/repository/UserRepository.class
 com/ameda/compulnyx/utility/annotation/DOBRange.class
 com/ameda/compulnyx/services/AuthenticationService.class
 com/ameda/compulnyx/entities/Student.class
+com/ameda/compulnyx/config/DatabaseInit.class
 com/ameda/compulnyx/api/AuthResource.class
 com/ameda/compulnyx/services/impl/UserServiceImpl.class
 com/ameda/compulnyx/BusinessApplication.class
