@@ -1,0 +1,9 @@
+
+<div class="container mt-5">
+  <h4>Generate Student Records Excel</h4>
+  <form class="d-flex align-items-center gap-2" (ngSubmit)="onGenerate()">
+    <input type="number" min="0" [(ngModel)]="recordCount" name="recordCount"
+           class="form-control w-auto" placeholder="Enter number of records" required />
+    <button type="submit" class="btn btn-primary">Generate Excel</button>
+  </form>
+</div>

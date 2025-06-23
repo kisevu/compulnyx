@@ -11,11 +11,14 @@ com/ameda/compulnyx/entities/Student.class
 com/ameda/compulnyx/api/AuthResource.class
 com/ameda/compulnyx/services/impl/UserServiceImpl.class
 com/ameda/compulnyx/BusinessApplication.class
+com/ameda/compulnyx/api/DocumentResource.class
 com/ameda/compulnyx/config/DataSeeder.class
+com/ameda/compulnyx/services/impl/DocumentServiceImpl.class
 com/ameda/compulnyx/config/CompulnyxConfig.class
 com/ameda/compulnyx/entities/Student$StudentBuilder.class
 com/ameda/compulnyx/config/JwtAuthFilter.class
 com/ameda/compulnyx/dtos/responses/StudentRecordsResponse$StudentRecordsResponseBuilder.class
+com/ameda/compulnyx/services/DocumentService.class
 com/ameda/compulnyx/utility/validator/DOBValidator.class
 com/ameda/compulnyx/dtos/LoginUserDTO.class
 com/ameda/compulnyx/services/impl/AuthenticationImpl.class
