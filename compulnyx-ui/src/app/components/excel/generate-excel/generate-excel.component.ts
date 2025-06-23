@@ -21,9 +21,10 @@ export class GenerateExcelComponent  implements OnInit{
   ngOnInit(): void {
   }
 
+  onGenerate(): void {
+    const url = `${this.apiUrl}/generate?count=${this.recordCount}`;
 
-  onGenerate():void {
-    this.http.get(this.apiUrl, { responseType: 'blob' }).subscribe({
+    this.http.get(url, { responseType: 'blob' }).subscribe({
       next: (blob) => {
         const link = document.createElement('a');
         link.href = window.URL.createObjectURL(blob);
@@ -35,5 +36,9 @@ export class GenerateExcelComponent  implements OnInit{
       }
     });
   }
+
+
+
+
 
 }

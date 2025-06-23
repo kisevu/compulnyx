@@ -1,1 +1,61 @@
-<p>student-management works!</p>
+<div class="container">
+  <div class="text-end mb-2">
+  <button class="btn btn-success" (click)="addStudent()">Add New Student</button>
+</div>
+
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th>Full Name</th>
+      <th>DOB</th>
+      <th>Class</th>
+      <th>Score</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (student of $students | async ; track $index) {
+      <tr>
+      <td>
+        <img [src]="student.photoPath ? student.photoPath : 'assets/avatar.png'"
+             width="50" height="50" class="rounded-circle" />
+      </td>
+      <td>{{ student.firstName }} {{ student.lastName }}</td>
+      <td>{{ student.dob }}</td>
+      <td>{{ student.className }}</td>
+      <td>{{ student.score }}</td>
+      <td>
+        <button class="btn btn-sm btn-primary mx-2" (click)="viewStudent(student)">View</button>
+        <button class="btn btn-sm btn-warning mx-2" (click)="editStudent(student)">Edit</button>
+        <button class="btn btn-sm btn-danger mx-2" (click)="deleteStudent(student)">Delete</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+
+@if (modalVisible) {
+  <div class="modal-backdrop">
+  <div class="modal-content p-4" style="width: 400px; margin: auto; margin-top: 5%;">
+    <h5>{{ formMode === 'add' ? 'Add Student' : 'Edit Student' }}</h5>
+    <form [formGroup]="studentForm" (ngSubmit)="submitForm()">
+      <input formControlName="firstName" placeholder="First Name" class="form-control mb-2" required>
+      <input formControlName="lastName" placeholder="Last Name" class="form-control mb-2" required>
+      <input type="date" formControlName="dob" class="form-control mb-2" required>
+      <select formControlName="className" class="form-control mb-2" required>
+        <option value="">Select Class</option>
+        <option *ngFor="let c of ['Class1','Class2','Class3','Class4','Class5']" [value]="c">{{ c }}</option>
+      </select>
+      <input formControlName="score" type="number" class="form-control mb-2" placeholder="Score" required>
+      <input type="file" (change)="onFileSelected($event)" class="form-control mb-2" accept="image/png,image/jpeg">
+      <div class="text-end">
+        <button type="submit" class="btn btn-primary">{{ formMode === 'add' ? 'Add' : 'Update' }}</button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="modalVisible = false">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+}
+
+</div>

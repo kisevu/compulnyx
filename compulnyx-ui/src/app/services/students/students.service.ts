@@ -15,7 +15,7 @@ export class StudentsService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-    return this.http.get(this.apiUrl, { headers });
+    return this.http.get(`${this.apiUrl}/all-students`, { headers });
   }
 }
 

@@ -19,7 +19,6 @@ import java.util.List;
 @Table(name = "tbl_users")
 @Builder
 public class User implements UserDetails {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long studentId;

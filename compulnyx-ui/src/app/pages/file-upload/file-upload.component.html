@@ -1,1 +1,7 @@
-<p>file-upload works!</p>
+<div class="mb-3">
+  <input type="file" (change)="onFileSelected($event)" accept=".xlsx" class="form-control" />
+</div>
+
+<button class="btn btn-success" (click)="uploadSelectedFile()">
+  Upload Excel to DB
+</button>
