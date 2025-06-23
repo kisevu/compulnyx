@@ -2,6 +2,7 @@ package com.ameda.compulnyx.services.impl;
 
 import com.ameda.compulnyx.dtos.LoginUserDTO;
 import com.ameda.compulnyx.dtos.RegisterUserDTO;
+import com.ameda.compulnyx.entities.Student;
 import com.ameda.compulnyx.entities.User;
 import com.ameda.compulnyx.repository.UserRepository;
 import com.ameda.compulnyx.services.AuthenticationService;
@@ -9,8 +10,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Random;
 
@@ -20,7 +19,6 @@ import java.util.Random;
 
 @Service
 public class AuthenticationImpl implements AuthenticationService {
-
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -35,9 +33,28 @@ public class AuthenticationImpl implements AuthenticationService {
 
     @Override
     public User signUp(RegisterUserDTO registerUserDTO) {
-        User user = new User(registerUserDTO.getUsername(),
-                passwordEncoder.encode(registerUserDTO.getPassword()),
-                registerUserDTO.getEmail(),registerUserDTO.getStudent());
+        RegisterUserDTO req = RegisterUserDTO.builder()
+                .email(registerUserDTO.getEmail())
+                .password(registerUserDTO.getPassword())
+                .firstName(registerUserDTO.getFirstName())
+                .lastName(registerUserDTO.getLastName())
+                .dob(registerUserDTO.getDob())
+                .studentClass(registerUserDTO.getStudentClass())
+                .score(registerUserDTO.getScore())
+                .photoPath(registerUserDTO.getPhotoPath())
+                .build();
+        Student student = Student.builder()
+                .firstName(req.getFirstName())
+                .lastName(req.getLastName())
+                .dob(req.getDob())
+                .studentClass(req.getStudentClass())
+                .score(req.getScore())
+                .photoPath(req.getPhotoPath())
+                .status(1)
+                .build();
+        User user = new User(req.getEmail(),
+                passwordEncoder.encode(req.getPassword()),
+                req.getEmail(),student);
         user.setEnabled(false);
         return userRepository.save(user);
     }

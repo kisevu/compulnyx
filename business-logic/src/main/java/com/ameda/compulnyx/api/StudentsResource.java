@@ -26,14 +26,10 @@ public class StudentsResource {
         this.userService = userService;
     }
 
-
     @GetMapping("/all-students")
     public ResponseEntity<?> getAllStudents(){
         return ResponseEntity.status(HttpStatus.OK)
                 .body(userService.allUsers());
     }
-    
-    
-
 
 }

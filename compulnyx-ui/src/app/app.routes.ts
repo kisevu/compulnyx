@@ -18,10 +18,10 @@ export const routes: Routes = [
   {
      path: 'login',
     component: LoginComponent
- },
+  },
 
   {
-    path: '',
+    path: 'dashboard',
     component: DashboardComponent,
     canActivate: [authGuard],
     children: [
@@ -47,5 +47,9 @@ export const routes: Routes = [
       }
     ]
   },
-   { path: '**', redirectTo: 'login' }
+
+   {
+    path: '**',
+    redirectTo: 'login'
+   }
 ];

@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
  */
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
@@ -16,12 +17,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "tbl_users")
+@Builder
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long studentId;
-
     @Column(unique = true,nullable = false)
     private String username; // username should be the email by default
     @Column(unique = true,nullable = false)
@@ -39,6 +40,15 @@ public class User implements UserDetails {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.student = student;
+    }
+
+    public User(Long studentId, String username, String email, String password, boolean enabled, Student student) {
+        this.studentId = studentId;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.enabled = enabled;
         this.student = student;
     }
 

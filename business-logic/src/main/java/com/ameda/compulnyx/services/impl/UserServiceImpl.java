@@ -1,5 +1,6 @@
 package com.ameda.compulnyx.services.impl;
 
+import com.ameda.compulnyx.dtos.responses.StudentRecordsResponse;
 import com.ameda.compulnyx.entities.User;
 import com.ameda.compulnyx.repository.UserRepository;
 import com.ameda.compulnyx.services.UserService;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,10 +29,25 @@ public class UserServiceImpl  implements UserService {
     }
 
     @Override
-    public List<User> allUsers() {
+    public List<StudentRecordsResponse> allUsers() {
         List<User> users = new ArrayList<>();
         userRepository.findAll().forEach(users::add);
-        return users;
+        return users.stream()
+                .map(this::mapToStudentRecordsResponse)
+                .toList();
+    }
+
+    private StudentRecordsResponse mapToStudentRecordsResponse(User user){
+        return StudentRecordsResponse.builder()
+                .studentId(user.getStudentId())
+                .firstName(user.getStudent().getFirstName())
+                .lastName(user.getStudent().getLastName())
+                .dob(user.getStudent().getDob())
+                .className(user.getStudent().getClassName())
+                .score(user.getStudent().getScore())
+                .status(user.getStudent().getStatus())
+                .photoPath(user.getStudent().getPhotoPath())
+                .build();
     }
 
 

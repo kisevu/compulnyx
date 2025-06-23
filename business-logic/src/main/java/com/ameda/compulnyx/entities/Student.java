@@ -13,10 +13,12 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import org.hibernate.annotations.Check;
 
 @Embeddable
 @Check(constraints = "score >= 55 AND score <= 85")
+@Builder
 public class Student {
 
     @Column(nullable = false, length = 8)
@@ -46,7 +48,7 @@ public class Student {
     private int score;
 
     @Column(nullable = false)
-    private int status = 1; // designates the status to be active
+    private int status = 1;
 
     @Column(nullable = false)
     private String photoPath = "";

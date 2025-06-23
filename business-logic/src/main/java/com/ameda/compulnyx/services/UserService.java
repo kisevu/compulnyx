@@ -1,7 +1,6 @@
 package com.ameda.compulnyx.services;
 
-import com.ameda.compulnyx.entities.User;
-
+import com.ameda.compulnyx.dtos.responses.StudentRecordsResponse;
 import java.util.List;
 
 /**
@@ -9,5 +8,5 @@ import java.util.List;
  */
 public interface UserService {
 
-    List<User> allUsers();
+    List<StudentRecordsResponse> allUsers();
 }

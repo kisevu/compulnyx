@@ -1,9 +1,12 @@
 package com.ameda.compulnyx.dtos;
 
+import lombok.Builder;
+
 /**
  * Author: kev.Ameda
  */
 
+@Builder
 public class LoginUserDTO {
 
     private String email;
