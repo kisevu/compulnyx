@@ -1,19 +1,18 @@
 package com.ameda.compulnyx.config;
-
 import com.ameda.compulnyx.entities.Student;
 import com.ameda.compulnyx.entities.User;
 import com.ameda.compulnyx.repository.UserRepository;
-import org.springframework.boot.CommandLineRunner;
+import jakarta.annotation.PostConstruct;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
-import java.time.Month;
+
 
 /**
  * Author: kev.Ameda
  */
 
-public class DataSeeder implements CommandLineRunner {
+public class DataSeeder {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -22,31 +21,42 @@ public class DataSeeder implements CommandLineRunner {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
-
-    @Override
-    public void run(String... args) throws Exception {
+    @PostConstruct
+    public void insertTestUsers() {
         if (userRepository.count() == 0) {
-            userRepository.save(new User("test1@gmail.com", passwordEncoder.encode("test1"), "test1@gmail.com",
-                    Student.builder()
-                            .firstName("Test1")
-                            .lastName("User1")
-                            .dob(LocalDate.of(2000, Month.APRIL,20))
-                            .build()));
+            // Student 1
+            Student student1 = new Student(
+                    "Alice", "Johnson",
+                    LocalDate.of(2005, 4, 12),
+                    "Class1", 75, 1, ""
+            );
 
-            userRepository.save(new User("test2@gmail.com", passwordEncoder.encode("test2"), "test2@gmail.com",
-                    Student.builder()
-                            .firstName("Test2")
-                            .lastName("User2")
-                            .dob(LocalDate.of(2001, Month.DECEMBER,12))
-                            .build()));
+            User user1 = new User();
+            user1.setUsername("alice.johnson");
+            user1.setEmail("alice@example.com");
+            user1.setPassword(passwordEncoder.encode("password123"));
+            user1.setEnabled(true);
+            user1.setStudent(student1);
 
-            userRepository.save(new User("test3@gmail.com", passwordEncoder.encode("test3"), "test3@gmail.com",
-                    Student.builder()
-                            .firstName("Test3")
-                            .lastName("User3")
-                            .dob(LocalDate.of(2004, Month.JULY,10))
-                            .build()));
+            // Student 2
+            Student student2 = new Student(
+                    "Bob", "Smith",
+                    LocalDate.of(2007, 9, 23),
+                    "Class2", 68, 1, ""
+            );
+
+            User user2 = new User();
+            user2.setUsername("bob.smith");
+            user2.setEmail("bob@example.com");
+            user2.setPassword(passwordEncoder.encode("password123"));
+            user2.setEnabled(true);
+            user2.setStudent(student2);
+
+            // Save users
+            userRepository.save(user1);
+            userRepository.save(user2);
+
+            System.out.println("✅ Test users inserted successfully.");
         }
     }
-
 }
