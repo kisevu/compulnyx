@@ -4,6 +4,7 @@ import com.ameda.compulnyx.entities.User;
 import com.ameda.compulnyx.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
@@ -12,6 +13,7 @@ import java.time.LocalDate;
  * Author: kev.Ameda
  */
 
+@Component
 public class DataSeeder {
 
     private final UserRepository userRepository;
@@ -21,6 +23,7 @@ public class DataSeeder {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
+
     @PostConstruct
     public void insertTestUsers() {
         if (userRepository.count() == 0) {
