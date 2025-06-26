@@ -47,7 +47,7 @@ This is a Spring Boot + Angular based full-stack application designed for managi
     View, edit, and delete (soft delete with status = 0)
 
     Upload student photo (JPG/PNG, max 5MB)
-
+[README.md](README.md)
     Saves photo with filename format: {studentId}-{filename}
 
     Stored under:
@@ -57,7 +57,6 @@ This is a Spring Boot + Angular based full-stack application designed for managi
 ✅ Reporting & Filtering
 
     Student report table with pagination
-
     Filters:
         Search by student ID
 ## steps to run  the app ## 
@@ -69,3 +68,5 @@ This is a Spring Boot + Angular based full-stack application designed for managi
 * I have provided swagger endpoints at http://localhost:8000/swagger-ui.html and you should be able to use then endpoints.
 * I have my ui running on http://localhost:4200
 * The ui is guarded and therefore without authenticating in the login page none, one cannot navigate or protected resources.
+* Video  Presentation: https://www.loom.com/share/fe94551ce1fa42728d7cf6fcab523b58?sid=db82b92c-450b-447d-999d-96c9aa72e76b
+* https://www.loom.com/share/fe94551ce1fa42728d7cf6fcab523b58?sid=db82b92c-450b-447d-999d-96c9aa72e76b
